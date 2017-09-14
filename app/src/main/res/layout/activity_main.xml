@@ -5,12 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="vectis.mtgeventcompanion.MainActivity">
-<ListView
-    android:id="@+id/player_list"
-    android:background="@color/colorBgDark"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:divider="@color/colorDivider"
-    android:dividerHeight="1dp">
-</ListView>
+    <TextView
+        android:id="@+id/count_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>

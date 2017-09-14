@@ -1,26 +1,22 @@
 package vectis.mtgeventcompanion;
 
-import android.content.Context;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.RunnableFuture;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CTimerListener{
 
     private ArrayList<String> players;
+
+    private CTimer timer;
+
+    private TextView counterView;
 
     public MainActivity() {
 
@@ -28,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 100; i++) {
             players.add("Player " + i);
         }
+
+        timer = new CTimer(20, this);
     }
 
     @Override
@@ -35,12 +33,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView playerList = (ListView) findViewById(R.id.player_list);
+        counterView = (TextView) findViewById(R.id.count_textview);
 
-        PlayersAdapter playerAdapter = new PlayersAdapter(this, R.layout.player_list_item, players);
-        playerList.setAdapter(playerAdapter);
+        timer.startTimer();
+
+        //ListView playerList = (ListView) findViewById(R.id.player_list);
+
+        //PlayersAdapter playerAdapter = new PlayersAdapter(this, R.layout.player_list_item, players);
+        //playerList.setAdapter(playerAdapter);
     }
 
+
+    /*--- CTimer Listener ---*/
+
+    @Override
+    public void countdown(int count) {
+    }
+
+    @Override
+    public void countdownEnded() {
+    }
+
+    /*
 
     private class PlayersAdapter extends ArrayAdapter<String> {
 
@@ -70,4 +84,6 @@ public class MainActivity extends AppCompatActivity {
             return playersList.size();
         }
     }
+
+    */
 }
